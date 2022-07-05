@@ -1,0 +1,15 @@
+[Unit]
+Description=Automatic Boot Loader Sign
+Documentation=Copy to grubx64.efi and sign
+DefaultDependencies=no
+Conflicts=shutdown.target
+After=systemd-boot-update.service
+Before=sysinit.target shutdown.target systemd-update-done.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/sh -c "/usr/bin/find /boot -type f -name systemd* -exec /usr/bin/sh -c 'if ! /usr/bin/sbverify --list {} 2>/dev/null | /usr/bin/grep -q \"signature certificates\"; then /usr/bin/sbsign --key /root/.mok/MOK.key --cert /root/.mok/MOK.crt --output {} {} && cp {} `dirname {}`/grubx64.efi; fi' \;"
+
+[Install]
+WantedBy=sysinit.target

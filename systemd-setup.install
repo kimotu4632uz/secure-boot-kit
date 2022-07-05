@@ -1,0 +1,14 @@
+post_install() {
+  systemctl enable systemd-boot-update.service
+  systemctl enable systemd-boot-secureboot.service
+}
+
+post_upgrade() {
+  systemctl restart systemd-boot-securebooot.service
+}
+
+pre_remove() {
+  systemctl disable systemd-boot-update.service
+  systemctl disable systemd-boot-secureboot.service
+}
+

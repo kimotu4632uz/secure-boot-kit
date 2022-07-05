@@ -1,0 +1,9 @@
+[Trigger]
+Type = Package
+Operation = Upgrade
+Target = shim-signed
+
+[Action]
+Description = Copy shimx64.efi and mmx64.efi
+When = PostTransaction
+Exec = /usr/bin/sh -c "/usr/bin/cp /usr/share/shim-signed/shimx64.efi /boot/EFI/systemd/shimx64.efi && /usr/bin/cp /usr/share/shim-signed/mmx64.efi /boot/EFI/systemd/mmx64.efi"
