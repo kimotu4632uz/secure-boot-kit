@@ -1,4 +1,5 @@
 post_install() {
+  systemctl daemon-reload
   systemctl enable systemd-boot-update.service
   systemctl enable systemd-boot-secureboot.service
 }

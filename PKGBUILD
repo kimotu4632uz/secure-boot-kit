@@ -1,5 +1,5 @@
 pkgname=secure-boot-kit
-pkgver=1.0
+pkgver=1.1
 pkgrel=1
 pkgdesc="setup secure boot with shim and systemd-boot"
 arch=('x86_64')
